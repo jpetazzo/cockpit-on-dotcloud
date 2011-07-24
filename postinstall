@@ -1,0 +1,9 @@
+#!/bin/sh
+[ -d /home/dotcloud/data ] || mkdir /home/dotcloud/data
+[ -d /home/dotcloud/data/Cockpit ] || {
+	cd /home/dotcloud/data
+	wget http://contributions.pilotsystems.net/django/cockpit/releases/1.0/Cockpit-1.0.0.tar.gz
+	tar -zxf Cockpit-1.0.0.tar.gz
+}
+python /home/dotcloud/data/Cockpit/manage.py syncdb --noinput
+python /home/dotcloud/current/mkadmin.py
